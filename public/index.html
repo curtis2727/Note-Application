@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <h1>Note-Taking-App</h1>
-    
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><Note-Taking-App></title>
+    <title>Note-Taking App</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
     <div id="app">
         <h1>User Authentication</h1>
@@ -39,57 +35,17 @@
         <button id="logoutButton" style="display: none;">Log Out</button>
     </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData);
-
-            const response = await fetch('http://localhost:8001/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            const result = await response.json();
-            document.getElementById('message').innerText = result.message;
-
-            if (response.ok) {
-                document.getElementById('logoutButton').style.display = 'block';
-                document.getElementById('loginFormContainer').style.display = 'none';
-                document.getElementById('registerFormContainer').style.display = 'none';
-            }
-        });
-
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData);
-
-            const response = await fetch('http://localhost:8001/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            const result = await response.json();
-            document.getElementById('message').innerText = result.message;
-        });
-
-        document.getElementById('logoutButton').addEventListener('click', async () => {
-            
-            document.getElementById('message').innerText = 'You have logged out.';
-            document.getElementById('logoutButton').style.display = 'none';
-            document.getElementById('loginFormContainer').style.display = 'block';
-            document.getElementById('registerFormContainer').style.display = 'block';
-        });
-    </script>
-    <script src="js/script.js"></script>
+    <div class="container" style="display: none;" id="notesContainer">
+        <h1>Your Notes</h1>
+        <form id="noteForm">
+            <input type="text" name="title" placeholder="Note Title" required>
+            <textarea name="content" placeholder="Note Content" required></textarea>
+            <button type="submit">Create Note</button>
+        </form>
+        <div id="notesList"></div>
+    </div>
+    
+    <script src="js/app.js"></script>
 </body>
 </html>
-
 
