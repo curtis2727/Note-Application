@@ -24,3 +24,14 @@ button {
     margin-top: 20px;
     color: red;
 }
+
+.container {
+    margin-top: 20px;
+    width: 300px; /* Adjust container width as needed */
+}
+
+#notesList > div {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
